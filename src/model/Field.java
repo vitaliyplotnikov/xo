@@ -31,7 +31,7 @@ public class Field {
         if(!checkPoint(point)) {
             throw new InvalidPointException();
         }
-        
+
         field[point.x][point.y] = figure;
     }
 
