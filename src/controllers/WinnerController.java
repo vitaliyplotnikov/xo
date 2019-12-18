@@ -16,7 +16,7 @@ public class WinnerController {
 
         for (int i = 0;i < field.getSize();i++){
             if (check(field, new Point(0,i), point -> new Point(point.x + 1,point.y)))
-                return field.getFigure(new Point(i,0));
+                return field.getFigure(new Point(0,i));
         }
 
         if (check(field, new Point(0,0), point -> new Point(point.x + 1,point.y + 1)))
@@ -34,12 +34,15 @@ public class WinnerController {
         Point nextPoint = pointChanger.next(currentPoint);
         try {
             currnetFigure = field.getFigure(currentPoint);
+
+            if (currnetFigure == null) return false;
+
             nextFigure = field.getFigure(nextPoint);
         } catch (InvalidPointException e) {
             return true;
         }
 
-        if (currnetFigure == null) return false;
+
         if (currnetFigure != nextFigure) return false;
 
         return check(field,nextPoint,pointChanger);
